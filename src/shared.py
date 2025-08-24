@@ -29,12 +29,13 @@ def unpack_solution(x: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     x_R = x[:,2]
     return x_S, x_I, x_R
 
-def plot_solution(t, x_S, x_I, x_R, save: bool = False):
+def plot_solution(t, x_S, x_I, x_R, save: bool = False, plot_title: str = "Model"):
     plt.plot(t,x_S,label='S')
     plt.plot(t,x_I,label='I')
     plt.plot(t,x_R,label='R')
     plt.legend()
     plt.xlabel('time')
+    plt.title(plot_title)
     if save:
         plt.savefig('SIR_solution.pdf')
     plt.show()
@@ -62,6 +63,7 @@ def solve_and_plot_continuous_SIR(
             verbose: Whether to print the results.
             plot: Whether to plot the results.
             save: Whether to save the plot.
+            plot_title: Title of the plot.
 
     Returns:
         x_S: Susceptible population.
@@ -74,12 +76,13 @@ def solve_and_plot_continuous_SIR(
     verbose = kwargs.get("verbose", False)
     plot = kwargs.get("plot", True)
     save = kwargs.get("save", False)
+    plot_title = kwargs.get("plot_title", "Model")
 
     t = get_time_points(start, t_max, num_points)
     x = solve_one(x0, t, c, r, lambda_)
     x_S, x_I, x_R = unpack_solution(x)
     if plot:
-        plot_solution(t, x_S, x_I, x_R, save)
+        plot_solution(t, x_S, x_I, x_R, save, plot_title)
     if verbose:
         print(f"S(0) = {x_S[0]}, I(0) = {x_I[0]}, R(0) = {x_R[0]}")
         print(f"S(t) = {x_S[-1]}, I(t) = {x_I[-1]}, R(t) = {x_R[-1]}")
