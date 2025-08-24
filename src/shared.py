@@ -19,7 +19,11 @@ def solve_one(x0, t, c, r, lambda_):
     x = odeint(odes, x0, t, args=(c, r, lambda_))  # see https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.odeint.html about args
     return x
 
-def unpack_solution(x):
+def unpack_solution(x: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Unpack the solution of the SIR model into separate arrays for S, I, and R.
+    Note types.
+    """
     x_S = x[:,0]
     x_I = x[:,1]
     x_R = x[:,2]
