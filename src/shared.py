@@ -41,7 +41,7 @@ def solve_and_plot_continuous_SIR(
     c,
     r,
     lambda_,
-    num_points,
+    t_max,
     **kwargs,
 ):
     """
@@ -52,10 +52,9 @@ def solve_and_plot_continuous_SIR(
         c: Contact rate.
         r: Recovery rate.
         lambda_: Immunity loss rate.
-        num_points: Number of time points to solve the model at.
+        t_max: Maximum time to solve the model at.
         **kwargs: Additional keyword arguments.
             start: Start time.
-            end: End time.
             verbose: Whether to print the results.
             plot: Whether to plot the results.
             save: Whether to save the plot.
@@ -67,12 +66,12 @@ def solve_and_plot_continuous_SIR(
     """
 
     start = kwargs.get("start", 0)
-    end = kwargs.get("end", 1000)
+    num_points = kwargs.get("num_points", 1000)
     verbose = kwargs.get("verbose", False)
     plot = kwargs.get("plot", True)
     save = kwargs.get("save", False)
 
-    t = get_time_points(start, end, num_points)
+    t = get_time_points(start, t_max, num_points)
     x = solve_one(x0, t, c, r, lambda_)
     x_S, x_I, x_R = unpack_solution(x)
     if plot:
