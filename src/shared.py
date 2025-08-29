@@ -6,6 +6,50 @@ import matplotlib.pyplot as plt
 def get_time_points(start, end, num_points):
     return np.linspace(start, end, num_points)
 
+def int_less_than_21_to_word(number):
+    if number == 1:
+        return "one"
+    elif number == 2:
+        return "two"
+    elif number == 3:
+        return "three"
+    elif number == 4:
+        return "four"
+    elif number == 5:
+        return "five"
+    elif number == 6:
+        return "six"
+    elif number == 7:
+        return "seven"
+    elif number == 8:
+        return "eight"
+    elif number == 9:
+        return "nine"
+    elif number == 10:
+        return "ten"
+    elif number == 11:
+        return "eleven"
+    elif number == 12:
+        return "twelve"
+    elif number == 13:
+        return "thirteen"
+    elif number == 14:
+        return "fourteen"
+    elif number == 15:
+        return "fifteen"
+    elif number == 16:
+        return "sixteen"
+    elif number == 17:
+        return "seventeen"
+    elif number == 18:
+        return "eighteen"
+    elif number == 19:
+        return "nineteen"
+    elif number == 20:
+        return "twenty"
+    else:
+        return str(number)
+
 def odes(x, t, c, r, lambda_):
     S = x[0]
     I = x[1]            # noqa  # I is reserved
